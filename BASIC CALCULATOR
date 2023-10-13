@@ -1,0 +1,53 @@
+#fun def
+# print inputs 
+# ask for choices
+# if condition for calculations
+
+def add(a,b):
+    add = a+b
+    print("Addition:", add)
+
+def  sub(a,b):
+    sub = a-b
+    print("Subtraction:", sub)
+
+def  mul(a,b):
+    mul= a*b
+    print("Multiplication:", mul)
+
+def  div(a,b):
+    div= a/b
+    print("Division:", div)
+
+print("1. Addition")
+print("2. Subtraction")
+print("3. Multiplication")
+print("4. Division")
+
+choice = int(input( "Enter your choice: 1/2/3/4:"))
+
+if choice == 1:
+   a= int(input("num_1:"))
+   b= int(input("num_2:"))
+   add(a,b)
+
+elif choice == 2:
+
+   a= int(input("num_1:"))
+   b= int(input("num_2:"))
+   sub(a,b)
+
+
+elif choice == 3:
+      
+      a= int(input("num_1:"))
+      b= int(input("num_2:"))
+      mul(a,b)
+
+elif choice == 4:
+    a= int(input("num_1:"))
+    b= int(input("num_2:"))
+    div(a,b)
+
+else:
+    print("Invalid Choice")
