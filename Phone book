@@ -1,0 +1,87 @@
+def print_menu():
+    print("1. Print Phone numbers")
+    print("2. Add Phone number")
+    print("3. Delete Phone number")
+    print("4. Search Phone number")
+    print("5. Update Phone number")
+    print("6. Quit")
+    print()
+
+numbers = {}
+menu_choice = '0'
+print_menu()
+
+while menu_choice!= '6':
+    menu_choice = input("Type in a number (1-6): ")
+
+    if menu_choice == "1":
+        print("Phone numbers:")
+        for name, phone_number in numbers.items():
+            print("Name:", name, "Phone number:", phone_number)
+        print()
+
+    elif menu_choice == "2":
+        print("Add Name and Phone number")
+        name = input("Enter Name: ")
+        phone_number = input("Enter Number: ")
+        numbers[name] = phone_number
+
+        # Append the new contact to the file
+        with open("PhoneBook.txt", "a") as f:
+            f.write(f"{name} {phone_number}\n")
+        print()
+
+    elif menu_choice == "3":
+        print("Delete a Phone number")
+        name = input("Name: ")
+        if name in numbers:
+            # Remove the contact from the dictionary
+            del numbers[name]
+
+            # Update the file to remove the deleted contact
+            with open("PhoneBook.txt", "r") as f:
+                lines = f.readlines()
+            with open("PhoneBook.txt", "w") as f:
+                for line in lines:
+                    if line.strip("\n") != f"{name} {numbers[name]}":
+                        f.write(line)
+            print(f"{name}'s contact deleted.")
+        else:
+            print(name, "was not found")
+        print()
+
+    elif menu_choice == "4":
+        print("Search Phone number")
+        name = input("Name: ")
+        if name in numbers:
+            print("The Phone number is:", numbers[name])
+        else:
+            print(name, "was not found")
+        print()
+
+    elif menu_choice == "5":
+        print("Update Phone number")
+        name = input("Name: ")
+        if name in numbers:
+            new_phone_number = input("Enter new Phone number: ")
+            numbers[name] = new_phone_number
+
+            # Update the file with the new contact information
+            with open("PhoneBook.txt", "r") as f:
+                lines = f.readlines()
+            with open("PhoneBook.txt", "w") as f:
+                for line in lines:
+                    if line.strip("\n") != f"{name} {numbers[name]}":
+                        f.write(line)
+                f.write(f"{name} {new_phone_number}\n")
+            print(f"{name}'s contact updated.")
+        else:
+            print(name, "was not found")
+        print()
+
+    elif menu_choice == "6":
+        print("Exiting the Phone Book.")
+
+    else:
+        print("Invalid choice. Please enter a number between 1 and 6.")
+    print_menu()
